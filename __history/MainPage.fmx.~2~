@@ -1,0 +1,72 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 484
+  ClientWidth = 844
+  Position = Designed
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Label1: TLabel
+    Position.X = 320.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 185.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'PC Monitoring and Control Panel'
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    Position.X = 136.000000000000000000
+    Position.Y = 49.000000000000000000
+    Size.Width = 545.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = 
+      'Welcome to our PC/Laptop monitoring and control system. Select t' +
+      'he Device you would like to control.'
+    TabOrder = 2
+  end
+  object Pcbutton1: TButton
+    Position.X = 104.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'PC1'
+    TextSettings.Trimming = None
+  end
+  object Pcbutton2: TButton
+    Position.X = 504.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'PC2'
+    TextSettings.Trimming = None
+  end
+  object Pcbutton3: TButton
+    Position.X = 104.000000000000000000
+    Position.Y = 272.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 144.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Button1'
+    TextSettings.Trimming = None
+  end
+  object Pcbutton4: TButton
+    Position.X = 504.000000000000000000
+    Position.Y = 272.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 144.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'PC4'
+    TextSettings.Trimming = None
+  end
+end

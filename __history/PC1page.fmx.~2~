@@ -1,0 +1,155 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 528
+  ClientWidth = 880
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Label1: TLabel
+    Position.X = 408.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 57.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '       PC1'
+    TabOrder = 0
+  end
+  object Label2: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 118.000000000000000000
+    Text = '        Monitoring'
+    TabOrder = 1
+  end
+  object Label3: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 176.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Memory Usage:      Loading%'
+    TabOrder = 8
+  end
+  object Label4: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 151.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'CPU Usage:          Loading%'
+    TabOrder = 7
+  end
+  object Label5: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 201.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Disk Usage:      Loading%'
+    TabOrder = 6
+  end
+  object Label6: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 226.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Network Activity:   Loading(mbps)'
+    TabOrder = 5
+  end
+  object Label7: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 251.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Temperature:         Loading'
+    TabOrder = 4
+  end
+  object Label8: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 276.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Power Status:          On'
+    TabOrder = 3
+  end
+  object Label9: TLabel
+    Position.X = 88.000000000000000000
+    Position.Y = 301.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Running Software:     Loading '
+    TabOrder = 2
+  end
+  object Homebutton: TButton
+    Position.X = 48.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 121.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Text = 'Home'
+    TextSettings.Trimming = None
+  end
+  object TurnOnMicbutton: TButton
+    Position.X = 592.000000000000000000
+    Position.Y = 153.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 14
+    Text = 'Turn On Microphone'
+    TextSettings.Trimming = None
+  end
+  object TurnOnCamerbutton: TButton
+    Position.X = 592.000000000000000000
+    Position.Y = 194.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 13
+    Text = 'Turn On Camera'
+    TextSettings.Trimming = None
+  end
+  object MuteSpeakersbutton: TButton
+    Position.X = 592.000000000000000000
+    Position.Y = 235.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 12
+    Text = 'Mute Speaker'
+    TextSettings.Trimming = None
+  end
+  object SignOutbutton: TButton
+    Position.X = 592.000000000000000000
+    Position.Y = 276.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    Text = 'Sign Out'
+    TextSettings.Trimming = None
+  end
+  object RestartPCbutton: TButton
+    Position.X = 592.000000000000000000
+    Position.Y = 317.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    Text = 'Restart PC'
+    TextSettings.Trimming = None
+  end
+  object Label10: TLabel
+    Position.X = 592.000000000000000000
+    Position.Y = 120.000000000000000000
+    Text = 'Controls'
+    TabOrder = 15
+  end
+end

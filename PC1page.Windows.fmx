@@ -1,0 +1,3 @@
+inherited PC1pageform_Windows: TPC1pageform_Windows
+  DesignerMasterStyle = 0
+end
