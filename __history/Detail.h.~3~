@@ -1,0 +1,24 @@
+//---------------------------------------------------------------------------
+
+#ifndef DetailH
+#define DetailH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ComCtrls.hpp>
+//---------------------------------------------------------------------------
+class TDetailForm : public TForm
+{
+__published:	// IDE-managed Components
+	TListView *ListView1;
+	TButton *Button1;
+private:	// User declarations
+public:		// User declarations
+	__fastcall TDetailForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TDetailForm *DetailForm;
+//---------------------------------------------------------------------------
+#endif
