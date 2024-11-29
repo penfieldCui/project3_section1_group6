@@ -1,0 +1,25 @@
+//---------------------------------------------------------------------------
+
+#ifndef AddComputerH
+#define AddComputerH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+//---------------------------------------------------------------------------
+class TAddComputerForm : public TForm
+{
+__published:	// IDE-managed Components
+	TLabel *Label1;
+	TLabel *Label2;
+	TEdit *Edit1;
+	TEdit *Edit2;
+private:	// User declarations
+public:		// User declarations
+	__fastcall TAddComputerForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TAddComputerForm *AddComputerForm;
+//---------------------------------------------------------------------------
+#endif

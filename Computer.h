@@ -3,13 +3,14 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
 class Component {
 public:
-    enum ComponentType { MICROPHONE, CAMERA, CPU, RAM };
-    Component(ComponentType type, int cpuUsage, int ramUsage);
+
+    Component(string type, int cpuUsage, int ramUsage);
     void PowerOn();
     void PowerOff();
     bool IsPoweredOn() const;
@@ -17,24 +18,34 @@ public:
 	int GetCpuUsage() const;
     int GetRamUsage() const;
 
+	string GetType() const;
+
+	void UpdateUsageComponent();
+	void RandomlyFluctuateUsage();
+
+
+	// New methods for saving/loading component
+    void SaveToFile(ofstream &out) const;
+	void LoadFromFile(ifstream &in);
+
 private:
-    ComponentType type;
+	string type;
 	bool poweredOn;
-	int cpuUsage; // of single component
-	int ramUsage; //
+	double cpuUsage; // of single component
+	double ramUsage; //
 };
 
 class Computer {
 public:
 
-	Computer(const string &ipAddress, const string &name, int totalRam);
+	Computer(const string &ipAddress, const string &name, int totalRam = 16384);
 
 	// Use Timer to update
 	void UpdateUsage();
 
 	// components
 	void AddComponent(const Component& component);
-	std::string GetStatusReport() const;
+	string GetStatusReport() const;
 
 	// power
     void PowerOn();
@@ -51,35 +62,42 @@ public:
 
 
 
+	void SetName(const string &newName);
+
     // Accessor methods
     string GetIpAddress() const;
     string GetName() const;
 	int GetTotalRam() const;
 
 
-    int GetCpuUsage() const;
-	int GetRamUsage() const;
+	double GetCpuUsage() const;
+	double GetRamUsage() const;
+
+    vector<Component> components; // List of components
 
 
+	// New methods for saving/loading computer
+	void SaveToFile(ofstream &out) const;
+	void LoadFromFile(ifstream &in);
 
 private:
 	string ipAddress;  // IP address of the computer
 	string name;       // Name of the computer
-    int totalRam;           // Total RAM size (in MB)
+	int totalRam;           // Total RAM size (in MB)
 //	int usedRam;            // Currently used RAM (in MB)
 
     // usage in %
-	int cpuUsage;
-	int ramUsage;
+	double cpuUsage;
+	double ramUsage;
 
     bool poweredOn;         // Power state
     bool connected;         // Network connection state
 //    int brightness;         // Screen brightness (percentage)
-	std::vector<Component> components; // List of components
+
 
 	void CalculateUsage();  // Calculate total CPU and RAM usage
 
-    void RandomlyFluctuateUsage();
+
 };
 
 #endif
