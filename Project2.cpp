@@ -7,6 +7,7 @@
 USEFORM("Home.cpp", HomeForm);
 USEFORM("AddComputer.cpp", AddComputerForm);
 USEFORM("Detail.cpp", DetailForm);
+USEFORM("AddComponent.cpp", AddComponentForm);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -17,6 +18,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(THomeForm), &HomeForm);
 		Application->CreateForm(__classid(TAddComputerForm), &AddComputerForm);
 		Application->CreateForm(__classid(TDetailForm), &DetailForm);
+		Application->CreateForm(__classid(TAddComponentForm), &AddComponentForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

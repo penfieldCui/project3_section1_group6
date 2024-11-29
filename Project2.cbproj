@@ -177,6 +177,12 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="AddComponent.cpp">
+            <Form>AddComponentForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>AddComponent.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
         <CppCompile Include="AddComputer.cpp">
             <Form>AddComputerForm</Form>
             <FormType>dfm</FormType>
@@ -209,6 +215,7 @@
         <FormResources Include="Home.dfm"/>
         <FormResources Include="AddComputer.dfm"/>
         <FormResources Include="Detail.dfm"/>
+        <FormResources Include="AddComponent.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

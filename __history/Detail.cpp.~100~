@@ -1,0 +1,149 @@
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Detail.h"
+#include "AddComponent.h"
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TDetailForm *DetailForm;
+
+__fastcall TDetailForm::TDetailForm(TComponent* Owner, Computer* RComputer, THomeForm* RHomeForm)
+    : TForm(Owner), computer(RComputer), homeForm(HomeFormPointer)
+{
+	UpdateTimerDetail->Interval = 1000;
+	UpdateTimerDetail->Enabled = true;
+
+	FieldName->Text = computer->GetName().c_str();
+	FieldIP->Text = computer->GetIpAddress().c_str();
+
+    char buffer[10];
+	snprintf(buffer, sizeof(buffer), "%6.1f%%", computer->GetCpuUsage());
+	FieldCPU->Text = buffer; // CPU (%)
+
+	snprintf(buffer, sizeof(buffer), "%6.1f%%", computer->GetRamUsage());
+	FieldRAM->Text = buffer; // RAM (%)
+
+//	FieldCPU->Text = (std::to_string(computer->GetCpuUsage()) + "%").c_str();
+//	FieldRAM->Text = (std::to_string(computer->GetRamUsage()) + "%").c_str();
+	FieldPower->Text = computer->IsPoweredOn() ? "On" : "Off";
+	FieldNetwork->Text = computer->IsConnected() ? "Connected" : "Disconnected";
+
+	// 清空 ComponentListView
+	ComponentListView->Items->Clear();
+
+	// 添加组件信息到 ListView 中
+	for (const auto &component : computer->components) {
+		TListItem *item = ComponentListView->Items->Add();
+
+
+
+		item->SubItems->Add(std::to_string(component.GetType()).c_str());
+
+
+
+		double cpuUsagePercentage = component.GetCpuUsage();
+		double ramUsagePercentage = component.GetRamUsage();
+
+		char buffer[10];
+		snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
+		item->SubItems->Add(buffer); // CPU (%)
+
+		snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
+		item->SubItems->Add(buffer); // RAM (%)
+
+		// Power
+		item->SubItems->Add(component.IsPoweredOn() ? "On" : "Off");
+	}
+
+}
+
+
+
+void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
+{
+	//
+
+	if (this->computer != nullptr)
+	  for (int i = 0; i < computer->components.size(); ++i) {
+		// update each sec
+		computer->components[i].UpdateUsageComponent();
+
+//		// get the correspond item
+//        TListItem *item = ComputerListView->Items->Item[i];
+//
+//        double cpuUsagePercentage = computers[i].GetCpuUsage(); // CPU 使用率已经是百分比
+//        double ramUsagePercentage = computers[i].GetRamUsage();
+//
+//		char buffer[10];
+//		snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
+//		item->SubItems->Strings[1] = buffer; // CPU (%)
+//
+//		snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
+//		item->SubItems->Strings[2] = buffer; // RAM (%)
+
+		}
+}
+//---------------------------------------------------------------------------
+
+//void __fastcall TDetailForm::FieldNameChange(TObject *Sender)
+//{
+//	this->computer->SetName(std::string(AnsiString(FieldName->Text).c_str()));
+//
+//}
+//---------------------------------------------------------------------------
+
+void __fastcall TDetailForm::SaveClick(TObject *Sender)
+{
+	this->computer->SetName(std::string(AnsiString(FieldName->Text).c_str()));
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TDetailForm::AddClick(TObject *Sender)
+{
+	TAddComponentForm *addComponentForm = new TAddComponentForm(this);
+	if (addComponentForm->ShowModal() == mrOk) {
+
+		// input
+//		string ipAddress = addComputerForm->EditIpAddress->Text.c_str();
+//		string name = addComputerForm->EditName->Text.c_str();
+		string type = AnsiString(addComponentForm->EditType->Text).c_str();
+
+
+        double ramUsage = StrToFloatDef(addComponentForm->EditRAMUsage->Text, 0.0);
+        double cpuUsage = StrToFloatDef(addComponentForm->EditCPUUsage->Text, 0.0);
+
+        Component newComponent(type, cpuUsage, ramUsage);
+		computer->AddComponent(newComponent);
+
+
+
+		// add to display
+
+        TListItem *item = ComponentListView->Items->Add();
+		item->Caption = newComponent.GetType().c_str();
+
+
+		char buffer[10];
+        snprintf(buffer, sizeof(buffer), "%.1f", newComponent.GetCpuUsage());
+        item->SubItems->Add(buffer); // CPU 使用率
+
+        snprintf(buffer, sizeof(buffer), "%.1f", newComponent.GetRamUsage());
+		item->SubItems->Add(buffer); // RAM 使用率
+
+		//
+		item->SubItems->Add(newComponent.IsPoweredOn() ? "On" : "Off"); // 电源状态
+
+		// using I/O function from Home
+		if (homeForm) homeForm->SaveAll();
+
+		ShowMessage("Component added successfully.");
+
+
+	}
+
+    delete addComponentForm;
+}
+//---------------------------------------------------------------------------
+

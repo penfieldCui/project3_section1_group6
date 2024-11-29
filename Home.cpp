@@ -115,12 +115,7 @@ void __fastcall THomeForm::FormCreate(TObject *Sender)
         }
 
         // Save the initialized computers to file
-        ofstream outFile("computer_list.txt");
-        outFile << computers.size() << "\n";
-        for (const auto &comp : computers) {
-            comp.SaveToFile(outFile);
-        }
-        outFile.close();
+        SaveAll() ;
 	}
 
 //	// 初始化 Computer 实例并显示在 ListView 中
@@ -161,23 +156,6 @@ void __fastcall THomeForm::FormCreate(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
-void __fastcall THomeForm::ComputerListViewDblClick(TObject *Sender)
-{
-	int index = ComputerListView->ItemIndex;
-	if (index != -1) {
-		TDetailForm *detailForm = new TDetailForm(this, &computers[index]);
-//		detailForm->SetComputer(computers[index]);
-		detailForm->ShowModal();
-		delete detailForm;
-	}
-}
-//---------------------------------------------------------------------------
-
-
-
-
-
 void __fastcall THomeForm::MenuItemDeleteClick(TObject *Sender)
 {
 	int selectedIndex = ComputerListView->ItemIndex;
@@ -192,12 +170,7 @@ void __fastcall THomeForm::MenuItemDeleteClick(TObject *Sender)
 			computers.erase(computers.begin() + selectedIndex);
 
 			 // Save updated list to file
-			ofstream outFile("computer_list.txt");
-			outFile << computers.size() << "\n";
-			for (const auto &comp : computers) {
-				comp.SaveToFile(outFile);
-			}
-			outFile.close();
+			SaveAll()  ;
 
 
     	}
@@ -209,7 +182,7 @@ void __fastcall THomeForm::MenuItemDeleteClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-
+// Add computer to list
 void __fastcall THomeForm::Panel5Click(TObject *Sender)
 {
 	TAddComputerForm *addComputerForm = new TAddComputerForm(this);
@@ -251,26 +224,44 @@ void __fastcall THomeForm::Panel5Click(TObject *Sender)
 		item->SubItems->Add(newComputer.IsConnected() ? "Connected" : "Disconnected"); //
 		item->SubItems->Add(newComputer.IsPoweredOn() ? "On" : "Off"); // power
 
-        ofstream outFile("computer_list.txt");
-        outFile << computers.size() << "\n";
-        for (const auto &comp : computers) {
-            comp.SaveToFile(outFile);
-        }
-        outFile.close();
+		SaveAll();
 
 	}
+}
+//---------------------------------------------------------------------------
+void THomeForm::edit(TObject *Sender){
+	int index = ComputerListView->ItemIndex;
+	if (index != -1) {
+		TDetailForm *detailForm = new TDetailForm(this, &computers[index], this);
+//		detailForm->SetComputer(computers[index]);
+		detailForm->ShowModal();
+		delete detailForm;
+
+
+
+	}
+}
+
+void __fastcall THomeForm::ComputerListViewDblClick(TObject *Sender)
+{
+	edit(Sender);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall THomeForm::Edit1Click(TObject *Sender)
 {
-	int index = ComputerListView->ItemIndex;
-	if (index != -1) {
-		TDetailForm *detailForm = new TDetailForm(this, &computers[index]);
-//		detailForm->SetComputer(computers[index]);
-		detailForm->ShowModal();
-		delete detailForm;
-	}
+    edit(Sender);
 }
+
+
+// IO
 //---------------------------------------------------------------------------
+void THomeForm::SaveAll(){
+	ofstream outFile("computer_list.txt");
+	outFile << computers.size() << "\n";
+	for (const auto &comp : computers) {
+		comp.SaveToFile(outFile);
+	}
+	outFile.close();
+}
 

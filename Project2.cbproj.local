@@ -10,21 +10,21 @@
     <Transaction>2024/11/25 12:47:29.000.104,D:\CPP\Project3\Project2.cbproj=D:\CPP\Projects\Project2.cbproj</Transaction>
     <Transaction>2024/11/25 12:48:52.000.162,=D:\CPP\Project3\Unit1.cpp</Transaction>
     <Transaction>2024/11/25 12:51:12.000.766,=D:\CPP\Project3\Unit1.cpp</Transaction>
-    <Transaction>2024/11/25 12:51:22.000.394,D:\CPP\Project3\Computer.h=D:\CPP\Project3\Unit1.h</Transaction>
     <Transaction>2024/11/25 12:51:22.000.394,D:\CPP\Project3\Computer.cpp=D:\CPP\Project3\Unit1.cpp</Transaction>
+    <Transaction>2024/11/25 12:51:22.000.394,D:\CPP\Project3\Computer.h=D:\CPP\Project3\Unit1.h</Transaction>
     <Transaction>2024/11/25 12:53:56.000.572,=D:\CPP\Project3\Unit1.cpp</Transaction>
     <Transaction>2024/11/25 12:54:07.000.283,D:\CPP\Project3\Home.cpp=D:\CPP\Project3\Unit1.cpp</Transaction>
-    <Transaction>2024/11/25 12:54:07.000.283,D:\CPP\Project3\Home.h=D:\CPP\Project3\Unit1.h</Transaction>
     <Transaction>2024/11/25 12:54:07.000.283,D:\CPP\Project3\Home.dfm=D:\CPP\Project3\Unit1.dfm</Transaction>
+    <Transaction>2024/11/25 12:54:07.000.283,D:\CPP\Project3\Home.h=D:\CPP\Project3\Unit1.h</Transaction>
     <Transaction>2024/11/25 12:54:10.000.454,D:\CPP\Project3\Unit2.cpp=</Transaction>
     <Transaction>2024/11/25 16:42:01.000.435,=D:\CPP\Project3\Unit1.cpp</Transaction>
     <Transaction>2024/11/25 16:43:19.000.052,=D:\CPP\Project3\Unit1.cpp</Transaction>
+    <Transaction>2024/11/25 16:43:27.000.919,D:\CPP\Project3\DetailForm.h=D:\CPP\Project3\Unit1.h</Transaction>
     <Transaction>2024/11/25 16:43:27.000.919,D:\CPP\Project3\DetailForm.cpp=D:\CPP\Project3\Unit1.cpp</Transaction>
     <Transaction>2024/11/25 16:43:27.000.919,D:\CPP\Project3\DetailForm.dfm=D:\CPP\Project3\Unit1.dfm</Transaction>
-    <Transaction>2024/11/25 16:43:27.000.919,D:\CPP\Project3\DetailForm.h=D:\CPP\Project3\Unit1.h</Transaction>
-    <Transaction>2024/11/25 19:51:44.000.949,D:\CPP\Project3\Detail.cpp=D:\CPP\Project3\DetailForm.cpp</Transaction>
-    <Transaction>2024/11/25 19:51:44.000.949,D:\CPP\Project3\Detail.dfm=D:\CPP\Project3\DetailForm.dfm</Transaction>
     <Transaction>2024/11/25 19:51:44.000.949,D:\CPP\Project3\Detail.h=D:\CPP\Project3\DetailForm.h</Transaction>
+    <Transaction>2024/11/25 19:51:44.000.949,D:\CPP\Project3\Detail.dfm=D:\CPP\Project3\DetailForm.dfm</Transaction>
+    <Transaction>2024/11/25 19:51:44.000.949,D:\CPP\Project3\Detail.cpp=D:\CPP\Project3\DetailForm.cpp</Transaction>
     <Transaction>2024/11/28 12:58:11.000.736,=D:\CPP\Project3\Unit1.cpp</Transaction>
     <Transaction>2024/11/28 12:58:51.000.005,D:\CPP\Project3\AddComputer.dfm=D:\CPP\Project3\Unit1.dfm</Transaction>
     <Transaction>2024/11/28 12:58:51.000.005,D:\CPP\Project3\AddComputer.h=D:\CPP\Project3\Unit1.h</Transaction>
@@ -37,6 +37,13 @@
     <Transaction>2024/11/28 18:16:37.000.461,=D:\CPP\Project3\Detail.cpp</Transaction>
     <Transaction>2024/11/28 18:17:41.000.059,D:\CPP\Project3\Detail.cpp=</Transaction>
     <Transaction>2024/11/28 18:17:47.000.876,=D:\CPP\Project3\Detail.cpp</Transaction>
+    <Transaction>2024/11/28 22:40:30.993,=D:\CPP\Project3\Unit1.cpp</Transaction>
+    <Transaction>2024/11/28 22:41:09.805,D:\CPP\Project3\Component.dfm=D:\CPP\Project3\Unit1.dfm</Transaction>
+    <Transaction>2024/11/28 22:41:09.805,D:\CPP\Project3\Component.cpp=D:\CPP\Project3\Unit1.cpp</Transaction>
+    <Transaction>2024/11/28 22:41:09.805,D:\CPP\Project3\Component.h=D:\CPP\Project3\Unit1.h</Transaction>
+    <Transaction>2024/11/28 22:54:50.864,D:\CPP\Project3\AddComponent.cpp=D:\CPP\Project3\Component.cpp</Transaction>
+    <Transaction>2024/11/28 22:54:50.864,D:\CPP\Project3\AddComponent.h=D:\CPP\Project3\Component.h</Transaction>
+    <Transaction>2024/11/28 22:54:50.864,D:\CPP\Project3\AddComponent.dfm=D:\CPP\Project3\Component.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="AddComputer.cpp"/>
@@ -56,5 +63,9 @@
     <File Path="Detail.cpp"/>
     <File Path="Detail.dfm"/>
     <File Path="Detail.h"/>
+    <File Path="AddComponent.cpp"/>
+    <File Path="AddComponent.cpp"/>
+    <File Path="AddComponent.dfm"/>
+    <File Path="AddComponent.h"/>
   </ProjectSortOrder>
 </BorlandProject>

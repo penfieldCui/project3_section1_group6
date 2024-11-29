@@ -37,8 +37,13 @@ private:	// User declarations
 
 	std::vector<Computer> computers;
 
+    void edit(TObject *Sender);
+
 public:		// User declarations
 	__fastcall THomeForm(TComponent* Owner);
+
+    void SaveAll();
+
 };
 //---------------------------------------------------------------------------
 extern PACKAGE THomeForm *HomeForm;

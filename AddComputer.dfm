@@ -2,8 +2,8 @@ object AddComputerForm: TAddComputerForm
   Left = 0
   Top = 0
   Caption = 'AddComputer'
-  ClientHeight = 231
-  ClientWidth = 369
+  ClientHeight = 233
+  ClientWidth = 394
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,10 +27,12 @@ object AddComputerForm: TAddComputerForm
   end
   object Label3: TLabel
     Left = 8
-    Top = 16
-    Width = 342
+    Top = 37
+    Width = 367
     Height = 15
-    Caption = 'Please enter the IP Address of the computer you want to connect'
+    Caption = 
+      'And Please enter the IP Address of the computer you want to conn' +
+      'ect'
     Font.Charset = HANGEUL_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -40,10 +42,10 @@ object AddComputerForm: TAddComputerForm
   end
   object Label4: TLabel
     Left = 8
-    Top = 32
-    Width = 144
+    Top = 16
+    Width = 121
     Height = 15
-    Caption = 'And how you gonna call it?'
+    Caption = 'How you gonna call it?'
     Font.Charset = HANGEUL_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
