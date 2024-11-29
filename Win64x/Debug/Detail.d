@@ -969,4 +969,22 @@
   d:\embarcadero\studio\23.0\include\windows\vcl\Vcl.ListActns.hpp \
   d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\tchar.h \
   d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\sec_api\tchar_s.h \
-  Detail.cpp D:\CPP\Project3\Detail.h D:\CPP\Project3\Computer.h
+  Detail.cpp D:\CPP\Project3\Detail.h D:\CPP\Project3\Computer.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\fstream \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\filesystem \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\copy_options.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\directory_entry.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\file_status.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\file_type.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\perms.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\filesystem_error.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\path.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\iomanip \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\operations.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\perm_options.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\space_info.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\directory_iterator.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\directory_options.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\path_iterator.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\recursive_directory_iterator.h \
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\u8path.h

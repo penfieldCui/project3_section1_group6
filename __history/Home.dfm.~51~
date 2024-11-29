@@ -1,0 +1,111 @@
+object HomeForm: THomeForm
+  Left = 0
+  Top = 0
+  Caption = 'Home'
+  ClientHeight = 546
+  ClientWidth = 784
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnCreate = FormCreate
+  TextHeight = 15
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 784
+    Height = 49
+    Align = alTop
+    Caption = 'Computer Cluster Manager'
+    TabOrder = 0
+  end
+  object ComputerListView: TListView
+    AlignWithMargins = True
+    Left = 3
+    Top = 52
+    Width = 778
+    Height = 448
+    Align = alClient
+    Columns = <
+      item
+        Caption = 'Name of computer'
+        MaxWidth = 200
+        MinWidth = 130
+        Width = 130
+      end
+      item
+        Caption = 'IP'
+        Width = 130
+      end
+      item
+        Caption = 'CPU(%)'
+        Width = 60
+      end
+      item
+        Caption = 'RAM(%)'
+        Width = 60
+      end
+      item
+        Caption = 'Connect'
+        Width = 70
+      end
+      item
+        Caption = 'Power'
+        Width = 70
+      end>
+    RowSelect = True
+    PopupMenu = PopupMenu
+    TabOrder = 1
+    ViewStyle = vsReport
+    OnDblClick = ComputerListViewDblClick
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 503
+    Width = 784
+    Height = 43
+    Align = alBottom
+    TabOrder = 2
+    object Panel3: TPanel
+      Left = 734
+      Top = 1
+      Width = 49
+      Height = 41
+      Align = alRight
+      TabOrder = 0
+    end
+    object Panel4: TPanel
+      Left = 1
+      Top = 1
+      Width = 48
+      Height = 41
+      Align = alLeft
+      TabOrder = 1
+    end
+    object Panel5: TPanel
+      Left = 49
+      Top = 1
+      Width = 685
+      Height = 41
+      Align = alClient
+      Caption = 'Add a computer, press here'
+      TabOrder = 2
+      OnClick = Panel5Click
+    end
+  end
+  object UpdateTimer: TTimer
+    OnTimer = UpdateTimerTimer
+    Left = 664
+    Top = 8
+  end
+  object PopupMenu: TPopupMenu
+    Left = 520
+    Top = 8
+    object MenuItemDelete: TMenuItem
+      Caption = 'Delete'
+      OnClick = MenuItemDeleteClick
+    end
+  end
+end

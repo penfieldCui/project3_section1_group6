@@ -1,78 +1,104 @@
 #include "Computer.h"
 
 // Component class implementation
-Component::Component(ComponentType type, int cpuUsage, int ramUsage)
+Component::Component(string type, int cpuUsage, int ramUsage)
     : type(type), cpuUsage(cpuUsage), ramUsage(ramUsage), poweredOn(false) {}
 
-void Component::PowerOn() {
-    poweredOn = true;
+
+
+void Component::SaveToFile(ofstream &out) const {
+    out << type << " " << poweredOn << " " << cpuUsage << " " << ramUsage << "\n";
 }
 
-void Component::PowerOff() {
-    poweredOn = false;
+void Component::LoadFromFile(ifstream &in) {
+    in >> type >> poweredOn >> cpuUsage >> ramUsage;
 }
 
-bool Component::IsPoweredOn() const {
-    return poweredOn;
-}
-
-int Component::GetCpuUsage() const {
-    return cpuUsage;
-}
-
-int Component::GetRamUsage() const {
-    return ramUsage;
-}
+void Component::PowerOn() { poweredOn = true; }
+void Component::PowerOff() { poweredOn = false; }
+bool Component::IsPoweredOn() const { return poweredOn; }
+int Component::GetCpuUsage() const { return cpuUsage; }
+int Component::GetRamUsage() const { return ramUsage; }
+string Component::GetType() const { return type; }
 
 // Computer class implementation
-Computer::Computer(const std::string &ipAddress, const std::string &name, int totalRam)
-	: ipAddress(ipAddress), name(name), totalRam(totalRam), poweredOn(false), connected(false),  cpuUsage(0) , ramUsage(0){}
+Computer::Computer(const std::string &name, const std::string &ipAddress, int totalRam)
+	: ipAddress(ipAddress), name(name), totalRam(totalRam),
+	poweredOn(false), connected(false),  cpuUsage(5) , ramUsage(10){
 
-void Computer::Connect() {
-    connected = true;
-}
-
-void Computer::Disconnect() {
-    connected = false;
-}
-
-void Computer::PowerOn() {
-    poweredOn = true;
-}
-
-void Computer::PowerOff() {
-    poweredOn = false;
-}
-
-bool Computer::IsPoweredOn() const {
-    return poweredOn;
+//	this.AddComponent();
 }
 
 
 
-void Computer::AddComponent(const Component& component) {
-    components.push_back(component);
-    CalculateUsage();
+
+void Computer::SaveToFile(ofstream &out) const {
+    out << ipAddress << "\n"
+        << name << "\n"
+        << totalRam << "\n"
+        << cpuUsage << "\n"
+        << ramUsage << "\n"
+        << poweredOn << "\n"
+        << connected << "\n"
+        << components.size() << "\n";
+
+    for (const auto &component : components) {
+        component.SaveToFile(out);
+    }
 }
 
-std::string Computer::GetStatusReport() const {
-    // Generate status report including IP address, power state, CPU usage, RAM usage, and brightness
-    std::string report = "IP Address: " + ipAddress + "\n";
-    report += "Power State: " + std::string(IsPoweredOn() ? "ON" : "OFF") + "\n";
-    report += "CPU Usage: " + std::to_string(cpuUsage) + "%\n";
-    report += "RAM Usage: " + std::to_string(ramUsage) + "%\n";
-//    report += "Brightness: " + std::to_string(brightness) + "%\n";
-    return report;
+void Computer::LoadFromFile(ifstream &in) {
+    size_t componentsCount;
+    in >> ws;  // Consume any whitespace
+    getline(in, ipAddress);
+    getline(in, name);
+    in >> totalRam >> cpuUsage >> ramUsage >> poweredOn >> connected >> componentsCount;
+    components.clear();
+    for (size_t i = 0; i < componentsCount; ++i) {
+        Component comp("", 0, 0);  // Placeholder component
+        comp.LoadFromFile(in);
+        components.push_back(comp);
+    }
 }
 
-void Computer::RandomlyFluctuateUsage() {
-	double fluctuation = (std::rand() % 7 - 4); // Random value between -1 and 1
 
 
-	if( cpuUsage < 90 && cpuUsage >= 0)
+
+
+void Computer::PowerOn() { poweredOn = true; }
+void Computer::PowerOff() { poweredOn = false; }
+bool Computer::IsPoweredOn() const { return poweredOn; }
+void Computer::Connect() { connected = true; }
+void Computer::Disconnect() { connected = false; }
+bool Computer::IsConnected() const { return connected; }
+void Computer::SetName(const string &newName) { name = newName; }
+string Computer::GetIpAddress() const { return ipAddress; }
+string Computer::GetName() const { return name; }
+int Computer::GetTotalRam() const { return totalRam; }
+double Computer::GetCpuUsage() const { return cpuUsage; }
+double Computer::GetRamUsage() const { return ramUsage; }
+
+//
+//
+//std::string Computer::GetStatusReport() const {
+//	// Generate status report including IP address, power state, CPU usage, RAM usage, and brightness
+//	std::string report = "IP Address: " + ipAddress + "\n";
+//	report += "Power State: " + std::string(IsPoweredOn() ? "ON" : "OFF") + "\n";
+//	report += "CPU Usage: " + std::to_string(cpuUsage) + "%\n";
+//	report += "RAM Usage: " + std::to_string(ramUsage) + "%\n";
+////    report += "Brightness: " + std::to_string(brightness) + "%\n";
+//	return report;
+//}
+
+void Component::RandomlyFluctuateUsage() {
+	double fluctuation = (rand() % 5 - 2); // Random value between -2 and 2
+	fluctuation +=  0.1 * (rand() % 21 - 10);
+
+
+	if( cpuUsage < 20 && cpuUsage >= 0)
 		cpuUsage += fluctuation;
 
-	if( ramUsage < 90 && ramUsage >= 0)
+	if( ramUsage < 20 && ramUsage >= 0)
 		ramUsage += fluctuation;
 
     // Ensure that CPU usage is between 0% and 100%
@@ -92,13 +118,20 @@ void Computer::RandomlyFluctuateUsage() {
 
 void Computer::UpdateUsage() {
 	CalculateUsage();
+//	RandomlyFluctuateUsage();
+
+}
+
+
+void Component::UpdateUsageComponent() {
+
 	RandomlyFluctuateUsage();
 
 }
 
 void Computer::CalculateUsage() {
-	cpuUsage = 15;
-	ramUsage = 25;
+	cpuUsage = 5;
+	ramUsage = 10;
 	for (const auto &comp : components) {
 	if (comp.IsPoweredOn()) {
 			cpuUsage += comp.GetCpuUsage();
@@ -114,29 +147,3 @@ void Computer::CalculateUsage() {
         ramUsage = 100;
     }
 }
-
-// Accessor methods
-std::string Computer::GetIpAddress() const {
-    return ipAddress;
-}
-
-std::string Computer::GetName() const {
-    return name;
-}
-
-int Computer::GetTotalRam() const {
-    return totalRam;
-}
-
-int Computer::GetCpuUsage() const {
-    return cpuUsage;
-}
-
-int Computer::GetRamUsage() const {
-    return ramUsage;
-}
-
-bool Computer::IsConnected() const {
-    return connected;
-}
-
