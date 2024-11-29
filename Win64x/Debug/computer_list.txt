@@ -6,7 +6,10 @@ Computer 1
 10
 1
 1
-0
+3
+Camera 0 55 20
+Screen 0 5.1 5.1
+Mouse 0 11 22.5
 192.168.0.2
 Computer 2
 16384
@@ -56,7 +59,7 @@ Computer 7
 1
 0
 10.2.2.5
-Client
+Client1
 16384
 5
 10

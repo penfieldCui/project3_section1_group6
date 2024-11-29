@@ -2,8 +2,8 @@ object HomeForm: THomeForm
   Left = 0
   Top = 0
   Caption = 'Home'
-  ClientHeight = 546
-  ClientWidth = 784
+  ClientHeight = 359
+  ClientWidth = 706
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,7 +15,7 @@ object HomeForm: THomeForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 784
+    Width = 706
     Height = 49
     Align = alTop
     Caption = 'Computer Cluster Manager'
@@ -26,8 +26,8 @@ object HomeForm: THomeForm
     AlignWithMargins = True
     Left = 3
     Top = 52
-    Width = 778
-    Height = 448
+    Width = 700
+    Height = 261
     Align = alClient
     Columns = <
       item
@@ -61,18 +61,20 @@ object HomeForm: THomeForm
     TabOrder = 1
     ViewStyle = vsReport
     OnDblClick = ComputerListViewDblClick
+    ExplicitWidth = 778
+    ExplicitHeight = 448
   end
   object Panel2: TPanel
     Left = 0
-    Top = 503
-    Width = 784
+    Top = 316
+    Width = 706
     Height = 43
     Align = alBottom
     TabOrder = 2
     ExplicitTop = 495
     ExplicitWidth = 782
     object Panel3: TPanel
-      Left = 734
+      Left = 656
       Top = 1
       Width = 49
       Height = 41
@@ -91,7 +93,7 @@ object HomeForm: THomeForm
     object Panel5: TPanel
       Left = 49
       Top = 1
-      Width = 685
+      Width = 607
       Height = 41
       Align = alClient
       Caption = 'Add a computer, press here'

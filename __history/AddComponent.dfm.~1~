@@ -1,0 +1,29 @@
+object AddComponentForm: TAddComponentForm
+  Left = 0
+  Top = 0
+  Caption = 'AddComponent'
+  ClientHeight = 342
+  ClientWidth = 446
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object Label3: TLabel
+    Left = 8
+    Top = 37
+    Width = 367
+    Height = 15
+    Caption = 
+      'And Please enter the IP Address of the computer you want to conn' +
+      'ect'
+    Font.Charset = HANGEUL_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+end

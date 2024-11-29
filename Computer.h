@@ -10,13 +10,13 @@ using namespace std;
 class Component {
 public:
 
-    Component(string type, int cpuUsage, int ramUsage);
-    void PowerOn();
-    void PowerOff();
-    bool IsPoweredOn() const;
+	Component(string type, double cpuUsage, double ramUsage);
+	void PowerOn();
+	void PowerOff();
+	bool IsPoweredOn() const;
 
-	int GetCpuUsage() const;
-    int GetRamUsage() const;
+	double GetCpuUsage() const;
+    double GetRamUsage() const;
 
 	string GetType() const;
 
@@ -25,7 +25,7 @@ public:
 
 
 	// New methods for saving/loading component
-    void SaveToFile(ofstream &out) const;
+	void SaveToFile(ofstream &out) const;
 	void LoadFromFile(ifstream &in);
 
 private:

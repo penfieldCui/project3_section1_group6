@@ -987,4 +987,5 @@
   d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\directory_options.h \
   d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\path_iterator.h \
   d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\recursive_directory_iterator.h \
-  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\u8path.h
+  d:\embarcadero\studio\23.0\include\x86_64-w64-mingw32\c++\v1\__filesystem\u8path.h \
+  D:\CPP\Project3\Home.h D:\CPP\Project3\AddComponent.h

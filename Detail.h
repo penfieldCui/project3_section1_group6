@@ -6,6 +6,7 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include "Computer.h"
+#include "Home.h"
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 
@@ -38,16 +39,24 @@ __published:    // IDE-managed Components
 	TLabel *Label6;
 	TEdit *FieldNetwork;
 	TTimer *UpdateTimerDetail;
+	TButton *Back;
+	TButton *Save;
+	TPanel *Panel3;
+	TPanel *Panel4;
+	TButton *Add;
+	TPanel *PanelComponentList;
 	void __fastcall UpdateTimerDetailTimer(TObject *Sender);
-	void __fastcall FieldNameChange(TObject *Sender);
+	void __fastcall SaveClick(TObject *Sender);
+	void __fastcall AddClick(TObject *Sender);
 
 private:    // User declarations
 
 //	std::vector<Component> components;
-    Computer *computer;
+	Computer *computer;
+    THomeForm* homeForm;
 
 public:     // User declarations
-	__fastcall TDetailForm(TComponent* Owner, Computer* RComputer);
+	__fastcall TDetailForm(TComponent* Owner, Computer* RComputer, THomeForm* RHomeForm);
 //	void SetComputer(const Computer &computer);
 };
 
