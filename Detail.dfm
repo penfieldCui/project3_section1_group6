@@ -2,8 +2,8 @@ object DetailForm: TDetailForm
   Left = 0
   Top = 0
   Caption = 'Detail'
-  ClientHeight = 473
-  ClientWidth = 333
+  ClientHeight = 527
+  ClientWidth = 335
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,63 +14,79 @@ object DetailForm: TDetailForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 333
-    Height = 209
+    Width = 335
+    Height = 297
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 316
+    ExplicitLeft = -1
+    ExplicitTop = -5
+    ExplicitWidth = 329
     object Label1: TLabel
-      Left = 16
-      Top = 16
-      Width = 32
+      Left = 42
+      Top = 35
+      Width = 35
       Height = 15
-      Caption = 'Name'
+      Caption = 'Name:'
     end
     object Label2: TLabel
-      Left = 38
-      Top = 45
-      Width = 10
+      Left = 64
+      Top = 68
+      Width = 13
       Height = 15
-      Caption = 'IP'
+      Caption = 'IP:'
     end
     object Label3: TLabel
-      Left = 16
-      Top = 87
-      Width = 58
-      Height = 15
-      Caption = 'CPU Usage'
-    end
-    object Label4: TLabel
-      Left = 13
-      Top = 116
+      Left = 40
+      Top = 109
       Width = 61
       Height = 15
-      Caption = 'RAM Usage'
+      Caption = 'CPU Usage:'
+    end
+    object Label4: TLabel
+      Left = 37
+      Top = 138
+      Width = 64
+      Height = 15
+      Caption = 'RAM Usage:'
     end
     object Label5: TLabel
-      Left = 38
-      Top = 145
-      Width = 36
-      Height = 23
-      Caption = 'Power'
+      Left = 107
+      Top = 215
+      Width = 35
+      Height = 15
+      Caption = 'Status:'
     end
     object Label6: TLabel
-      Left = 12
-      Top = 174
-      Width = 62
+      Left = 107
+      Top = 256
+      Width = 35
       Height = 15
-      Caption = 'Connection'
+      Caption = 'Status:'
+    end
+    object Label7: TLabel
+      Left = 17
+      Top = 176
+      Width = 209
+      Height = 15
+      Caption = 'Press the button below to switch status.'
+    end
+    object Label8: TLabel
+      Left = 17
+      Top = 11
+      Width = 88
+      Height = 15
+      Caption = 'Name is editable'
     end
     object FieldName: TEdit
       Left = 86
-      Top = 13
+      Top = 32
       Width = 121
       Height = 23
       TabOrder = 0
     end
     object FieldIP: TEdit
       Left = 86
-      Top = 42
+      Top = 65
       Width = 121
       Height = 23
       Color = clBtnFace
@@ -78,82 +94,97 @@ object DetailForm: TDetailForm
       TabOrder = 1
     end
     object FieldCPU: TEdit
-      Left = 94
-      Top = 113
-      Width = 113
+      Left = 107
+      Top = 106
+      Width = 75
       Height = 23
       Color = clBtnFace
       ReadOnly = True
       TabOrder = 2
     end
     object FieldRAM: TEdit
-      Left = 94
-      Top = 84
-      Width = 113
+      Left = 107
+      Top = 135
+      Width = 75
       Height = 23
       Color = clBtnFace
       ReadOnly = True
       TabOrder = 3
     end
     object FieldPower: TEdit
-      Left = 94
-      Top = 171
-      Width = 113
+      Left = 148
+      Top = 212
+      Width = 59
       Height = 23
       Color = clBtnFace
       ReadOnly = True
       TabOrder = 4
     end
     object FieldNetwork: TEdit
-      Left = 94
-      Top = 142
-      Width = 113
+      Left = 148
+      Top = 252
+      Width = 83
       Height = 23
       Color = clBtnFace
       ReadOnly = True
       TabOrder = 5
     end
-    object Save: TButton
-      Left = 257
-      Top = 1
-      Width = 75
-      Height = 207
-      Align = alRight
-      Caption = 'Save'
+    object ButtonSave: TButton
+      Left = 224
+      Top = 31
+      Width = 79
+      Height = 26
+      Align = alCustom
+      Caption = 'Save name'
       TabOrder = 6
-      OnClick = SaveClick
-      ExplicitLeft = 240
+      OnClick = ButtonSaveClick
+    end
+    object ButtonPower: TButton
+      Left = 20
+      Top = 211
+      Width = 65
+      Height = 26
+      Caption = 'Power'
+      TabOrder = 7
+      OnClick = ButtonPowerClick
+    end
+    object ButtonConnect: TButton
+      Left = 20
+      Top = 251
+      Width = 65
+      Height = 26
+      Caption = 'Connect'
+      TabOrder = 8
+      OnClick = ButtonConnectClick
     end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 445
-    Width = 333
+    Top = 499
+    Width = 335
     Height = 28
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 443
-    ExplicitWidth = 316
+    ExplicitTop = 437
+    ExplicitWidth = 325
     object Back: TButton
-      Left = 211
+      Left = 213
       Top = 1
       Width = 112
       Height = 26
       Align = alRight
       Caption = 'Back to Home'
       TabOrder = 0
-      ExplicitLeft = 442
-      ExplicitTop = 6
-      ExplicitHeight = 31
+      ExplicitLeft = 203
     end
     object Panel3: TPanel
-      Left = 323
+      Left = 325
       Top = 1
       Width = 9
       Height = 26
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 304
+      ExplicitLeft = 315
     end
     object Panel4: TPanel
       Left = 1
@@ -162,7 +193,6 @@ object DetailForm: TDetailForm
       Height = 26
       Align = alLeft
       TabOrder = 2
-      ExplicitHeight = 31
     end
     object Add: TButton
       Left = 10
@@ -173,25 +203,22 @@ object DetailForm: TDetailForm
       Caption = 'Add new component'
       TabOrder = 3
       OnClick = AddClick
-      ExplicitLeft = 90
-      ExplicitHeight = 31
     end
   end
   object PanelComponentList: TPanel
     Left = 0
-    Top = 209
-    Width = 333
-    Height = 236
+    Top = 297
+    Width = 335
+    Height = 202
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 83
-    ExplicitWidth = 772
-    ExplicitHeight = 353
+    ExplicitWidth = 325
+    ExplicitHeight = 140
     object ComponentListView: TListView
       Left = 1
       Top = 1
-      Width = 331
-      Height = 234
+      Width = 333
+      Height = 200
       Align = alClient
       Columns = <
         item
@@ -211,13 +238,29 @@ object DetailForm: TDetailForm
           Width = 60
         end>
       RowSelect = True
+      PopupMenu = PopupMenu1
       TabOrder = 0
       ViewStyle = vsReport
+      OnDblClick = ComponentListViewDblClick
+      ExplicitWidth = 325
+      ExplicitHeight = 146
     end
   end
   object UpdateTimerDetail: TTimer
     OnTimer = UpdateTimerDetailTimer
     Left = 592
     Top = 320
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 280
+    Top = 248
+    object urnonoff1: TMenuItem
+      Caption = 'Turn on/off'
+      OnClick = urnonoff1Click
+    end
+    object Deletecomponent1: TMenuItem
+      Caption = 'Delete component'
+      OnClick = Deletecomponent1Click
+    end
   end
 end
