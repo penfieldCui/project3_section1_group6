@@ -2,16 +2,17 @@
 
 // Component class implementation
 Component::Component(string type, double cpuUsage, double ramUsage)
-	: type(type), cpuUsage(cpuUsage), ramUsage(ramUsage), poweredOn(false) {}
+	: type(type), cpuUsage(0), ramUsage(0), MaxCpuUsage(cpuUsage), MaxRamUsage(ramUsage), poweredOn(false) {}
 
 
 
 void Component::SaveToFile(ofstream &out) const {
-	out << type << " " << poweredOn << " " << cpuUsage << " " << ramUsage << "\n";
+	out << type << " " << poweredOn << " " << cpuUsage << " " << ramUsage
+	<< " " << MaxCpuUsage << " " << MaxRamUsage << "\n";
 }
 
 void Component::LoadFromFile(ifstream &in) {
-	in >> type >> poweredOn >> cpuUsage >> ramUsage;
+	in >> type >> poweredOn >> cpuUsage >> ramUsage >> MaxCpuUsage >> MaxRamUsage;
 }
 
 void Component::PowerOn() { poweredOn = true; }
@@ -21,12 +22,21 @@ double Component::GetCpuUsage() const { return cpuUsage; }
 double Component::GetRamUsage() const { return ramUsage; }
 string Component::GetType() const { return type; }
 
+//void Component::SetCpuUsage(double usage) { cpuUsage = usage};
+//void Component::SetRamUsage(double usage) { ramUsage = usage};
+
+
+
+
+
+
 
 
 // Computer class implementation
-Computer::Computer(const std::string &name, const std::string &ipAddress, int totalRam)
+Computer::Computer(const std::string &name, const std::string &ipAddress, int totalRam, bool poweredOn)
 	: ipAddress(ipAddress), name(name), totalRam(totalRam),
 	poweredOn(false), connected(false),  cpuUsage(5) , ramUsage(10){
+
 
 //	this.AddComponent();
 }
@@ -67,8 +77,10 @@ void Computer::LoadFromFile(ifstream &in) {
 
 	components.push_back(component);
 
-    CalculateUsage();
+	CalculateUsage();
 }
+
+vector<Component> Computer::GetComponents() { return components; };
 
 void Computer::PowerOn() { poweredOn = true; }
 void Computer::PowerOff() { poweredOn = false; }
@@ -97,47 +109,70 @@ double Computer::GetRamUsage() const { return ramUsage; }
 
 
 void Component::RandomlyFluctuateUsage() {
-	double fluctuation = (rand() % 5 - 2); // Random value between -2 and 2
+	double fluctuation = (rand() % 12 - 2); // Random value between -2 and 2
 	fluctuation +=  0.1 * (rand() % 21 - 10);
 
 
-	if( cpuUsage < 20 && cpuUsage >= 0)
+	if( cpuUsage <= MaxCpuUsage && cpuUsage >= 0)
 		cpuUsage += fluctuation;
 
-	if( ramUsage < 20 && ramUsage >= 0)
+	if( ramUsage <= MaxRamUsage && ramUsage >= 0)
 		ramUsage += fluctuation;
 
-    // Ensure that CPU usage is between 0% and 100%
+	// Ensure that CPU usage is between 0% and 100%
 	if (cpuUsage < 0) {
 		cpuUsage = 0;
-	} else if (cpuUsage > 100) {
-		cpuUsage = 100;
+	} else if (cpuUsage > (MaxCpuUsage + 10)) {
+		cpuUsage = this->GetCpuUsage();
 	}
 
 	// Ensure that RAM usage does not exceed total RAM or fall below 0
 	if (ramUsage < 0) {
 		ramUsage = 0;
-	} else if (ramUsage > 100) {
-		ramUsage = 100;
+	} else if (ramUsage > (MaxRamUsage+10)) {
+		ramUsage = this->GetRamUsage();
 	}
+
 }
 
 void Computer::UpdateUsage() {
-	CalculateUsage();
-//	RandomlyFluctuateUsage();
+	if(!IsPoweredOn()){
+		ramUsage = 0;
+		cpuUsage = 0;
+	} else
+		CalculateUsage();
 
 }
 
 
 void Component::UpdateUsageComponent() {
 
-	RandomlyFluctuateUsage();
+	if(this->IsPoweredOn()){
+        RandomlyFluctuateUsage();
+	}else{
+		ramUsage = 0;
+        cpuUsage = 0;
+    }
+
+
 
 }
 
 void Computer::CalculateUsage() {
-	cpuUsage = 6;
-	ramUsage = 10;
+	cpuUsage = 0;
+	ramUsage = 0;
+
+
+	// systeam itself use some resource
+	double fluctuation = (rand() % 5 + 1); // Random value between 1 and 5
+	fluctuation +=  0.1 * (rand() % 21 - 10);
+
+	cpuUsage += fluctuation;
+
+    fluctuation +=  0.1 * (rand() % 21 - 10);
+	ramUsage += fluctuation;
+
+	// sum the usage from components
 	for (const auto &comp : components) {
 		if (comp.IsPoweredOn()) {
 			cpuUsage += comp.GetCpuUsage();
@@ -146,10 +181,10 @@ void Computer::CalculateUsage() {
 	}
 
     // Ensure that the usage values do not exceed the total available resources
-    if (cpuUsage > 100) {
-		cpuUsage = 100;
-    }
-	if (ramUsage > 100) {
-        ramUsage = 100;
-    }
+	if (cpuUsage > 100) cpuUsage = 100;
+	if (cpuUsage < 0) cpuUsage = 0;
+
+	if (ramUsage > 100) ramUsage = 100;
+	if (ramUsage < 0) ramUsage = 0;
+
 }

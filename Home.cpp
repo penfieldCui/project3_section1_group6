@@ -24,24 +24,40 @@ __fastcall THomeForm::THomeForm(TComponent* Owner)
 void __fastcall THomeForm::UpdateTimerTimer(TObject *Sender)
 {
 for (int i = 0; i < computers.size(); ++i) {
-		// update each sec
-		computers[i].UpdateUsage();
 
-		// get the correspond item
-        TListItem *item = ComputerListView->Items->Item[i];
-
-        double cpuUsagePercentage = computers[i].GetCpuUsage(); // CPU 使用率已经是百分比
-        double ramUsagePercentage = computers[i].GetRamUsage();
-
-		char buffer[10];
-		snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
-		item->SubItems->Strings[1] = buffer; // CPU (%)
-
-		snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
-		item->SubItems->Strings[2] = buffer; // RAM (%)
-
+		TListItem *item = ComputerListView->Items->Item[i];
 
 		item->Caption = computers[i].GetName().c_str(); //
+
+		if(!computers[i].IsPoweredOn()){
+			item->SubItems->Strings[1] = "0.0" ;
+			item->SubItems->Strings[2] = "0.0" ;
+
+		} else if (!computers[i].IsConnected()) {
+			item->SubItems->Strings[1] = "Unknown" ;
+			item->SubItems->Strings[2] = "Unknown" ;
+
+		} else{
+            // update each sec
+			computers[i].UpdateUsage();
+
+			// get the correspond item
+
+			double cpuUsagePercentage = computers[i].GetCpuUsage(); // CPU 使用率已经是百分比
+			double ramUsagePercentage = computers[i].GetRamUsage();
+
+			char buffer[10];
+			snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
+			item->SubItems->Strings[1] = buffer; // CPU (%)
+
+			snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
+			item->SubItems->Strings[2] = buffer; // RAM (%)
+		}
+
+		item->SubItems->Strings[3] = (computers[i].IsConnected() ? "Connected" : "Disconnected");
+		item->SubItems->Strings[4] = (computers[i].IsPoweredOn() ? "On" : "Off");
+
+
 
 	}
 }
@@ -117,43 +133,8 @@ void __fastcall THomeForm::FormCreate(TObject *Sender)
         // Save the initialized computers to file
         SaveAll() ;
 	}
-
-//	// 初始化 Computer 实例并显示在 ListView 中
-//	for (int i = 0; i < 7; i++) {
-//		// 创建虚拟的 Computer 实例
-//		Computer comp("Computer " + std::to_string(i + 1), "192.168.0." + std::to_string(i + 1),   16384);
-//		comp.PowerOn();  // 设置计算机为开机状态
-//		comp.Connect();  // 设置计算机为联网状态
-//		computers.push_back(comp);
-//
-//
-//		//---------------------------------------------------------------------------
-//		// ComputerListView
-//		TListItem *item = ComputerListView->Items->Add();
-//
-//
-//		item->Caption = comp.GetName().c_str(); //
-//
-//		item->SubItems->Add(comp.GetIpAddress().c_str()); //
-//
-//		// CPU RAM
-//		double cpuUsagePercentage = comp.GetCpuUsage(); // %
-//		double ramUsagePercentage = comp.GetRamUsage();     // %
-//
-//		char buffer[10];
-//		snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
-//		item->SubItems->Add(buffer); // CPU (%)
-//
-//		snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
-//		item->SubItems->Add(buffer); // RAM (%)
-//
-//
-//
-//		item->SubItems->Add(comp.IsConnected() ? "Connected" : "Disconnected"); // network
-//		item->SubItems->Add(comp.IsPoweredOn() ? "On" : "Off"); // power status
-//
-//	}
 }
+
 //---------------------------------------------------------------------------
 
 void __fastcall THomeForm::MenuItemDeleteClick(TObject *Sender)
@@ -195,14 +176,14 @@ void __fastcall THomeForm::Panel5Click(TObject *Sender)
 		string name = AnsiString(addComputerForm->EditName->Text).c_str();
 
 
-
-		Computer newComputer(name, ipAddress); //
-		newComputer.PowerOn(); //
-		newComputer.Connect(); //
+		Computer newComputer = Computer(name, ipAddress); //
+//		newComputer.PowerOn(); //
+//		newComputer.Connect(); //
 		computers.push_back(newComputer);
 
-		// add to display
 
+
+		// add to display
 		TListItem *item = ComputerListView->Items->Add();
 		item->Caption = newComputer.GetName().c_str(); //    name
 		item->SubItems->Add(newComputer.GetIpAddress().c_str()); // IP 地址
@@ -236,9 +217,6 @@ void THomeForm::edit(TObject *Sender){
 //		detailForm->SetComputer(computers[index]);
 		detailForm->ShowModal();
 		delete detailForm;
-
-
-
 	}
 }
 
@@ -264,4 +242,27 @@ void THomeForm::SaveAll(){
 	}
 	outFile.close();
 }
+
+void __fastcall THomeForm::FormClose(TObject *Sender, TCloseAction &Action)
+{
+    SaveAll();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THomeForm::urnonoff1Click(TObject *Sender)
+{
+	int index = ComputerListView->ItemIndex;
+	if (index != -1) {
+
+		Computer *computer = &computers[index];
+
+		if(computer->IsPoweredOn())
+			computer->PowerOff();
+		else
+			computer->PowerOn();
+
+		SaveAll();
+    }
+}
+//---------------------------------------------------------------------------
 

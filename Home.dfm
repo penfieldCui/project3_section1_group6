@@ -2,32 +2,33 @@ object HomeForm: THomeForm
   Left = 0
   Top = 0
   Caption = 'Home'
-  ClientHeight = 359
-  ClientWidth = 706
+  ClientHeight = 393
+  ClientWidth = 673
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 706
+    Width = 673
     Height = 49
     Align = alTop
     Caption = 'Computer Cluster Manager'
     TabOrder = 0
-    ExplicitWidth = 782
+    ExplicitWidth = 704
   end
   object ComputerListView: TListView
     AlignWithMargins = True
     Left = 3
     Top = 52
-    Width = 700
-    Height = 261
+    Width = 667
+    Height = 295
     Align = alClient
     Columns = <
       item
@@ -50,37 +51,39 @@ object HomeForm: THomeForm
       end
       item
         Caption = 'Connect'
-        Width = 70
+        Width = 85
       end
       item
         Caption = 'Power'
-        Width = 70
+        Width = 85
       end>
     RowSelect = True
     PopupMenu = PopupMenu
     TabOrder = 1
     ViewStyle = vsReport
     OnDblClick = ComputerListViewDblClick
-    ExplicitWidth = 778
-    ExplicitHeight = 448
+    ExplicitLeft = -2
+    ExplicitTop = 55
+    ExplicitWidth = 700
+    ExplicitHeight = 261
   end
   object Panel2: TPanel
     Left = 0
-    Top = 316
-    Width = 706
+    Top = 350
+    Width = 673
     Height = 43
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 495
-    ExplicitWidth = 782
+    ExplicitTop = 308
+    ExplicitWidth = 704
     object Panel3: TPanel
-      Left = 656
+      Left = 623
       Top = 1
       Width = 49
       Height = 41
       Align = alRight
       TabOrder = 0
-      ExplicitLeft = 732
+      ExplicitLeft = 654
     end
     object Panel4: TPanel
       Left = 1
@@ -93,13 +96,13 @@ object HomeForm: THomeForm
     object Panel5: TPanel
       Left = 49
       Top = 1
-      Width = 607
+      Width = 574
       Height = 41
       Align = alClient
       Caption = 'Add a computer, press here'
       TabOrder = 2
       OnClick = Panel5Click
-      ExplicitWidth = 683
+      ExplicitWidth = 605
     end
   end
   object UpdateTimer: TTimer
@@ -110,6 +113,10 @@ object HomeForm: THomeForm
   object PopupMenu: TPopupMenu
     Left = 520
     Top = 8
+    object urnonoff1: TMenuItem
+      Caption = 'Turn on/off'
+      OnClick = urnonoff1Click
+    end
     object Edit1: TMenuItem
       Caption = 'Edit'
       OnClick = Edit1Click

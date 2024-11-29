@@ -213,9 +213,9 @@
             <PCH>true</PCH>
         </PCHCompile>
         <FormResources Include="Home.dfm"/>
-        <FormResources Include="AddComputer.dfm"/>
         <FormResources Include="Detail.dfm"/>
         <FormResources Include="AddComponent.dfm"/>
+        <FormResources Include="AddComputer.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -9,6 +9,8 @@
 #include "Home.h"
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.Buttons.hpp>
 
 class TDetailForm : public TForm
 {
@@ -35,25 +37,37 @@ __published:    // IDE-managed Components
 	TEdit *FieldRAM;
 	TLabel *Label4;
 	TEdit *FieldPower;
-	TLabel *Label5;
-	TLabel *Label6;
 	TEdit *FieldNetwork;
 	TTimer *UpdateTimerDetail;
 	TButton *Back;
-	TButton *Save;
+	TButton *ButtonSave;
 	TPanel *Panel3;
 	TPanel *Panel4;
 	TButton *Add;
 	TPanel *PanelComponentList;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *Deletecomponent1;
+	TButton *ButtonPower;
+	TButton *ButtonConnect;
+	TLabel *Label5;
+	TLabel *Label6;
+	TLabel *Label7;
+	TLabel *Label8;
+	TMenuItem *urnonoff1;
 	void __fastcall UpdateTimerDetailTimer(TObject *Sender);
-	void __fastcall SaveClick(TObject *Sender);
+	void __fastcall ButtonSaveClick(TObject *Sender);
 	void __fastcall AddClick(TObject *Sender);
+	void __fastcall ComponentListViewDblClick(TObject *Sender);
+	void __fastcall Deletecomponent1Click(TObject *Sender);
+	void __fastcall ButtonPowerClick(TObject *Sender);
+	void __fastcall ButtonConnectClick(TObject *Sender);
+	void __fastcall urnonoff1Click(TObject *Sender);
 
 private:    // User declarations
 
 //	std::vector<Component> components;
 	Computer *computer;
-    THomeForm* homeForm;
+	THomeForm* homeForm;
 
 public:     // User declarations
 	__fastcall TDetailForm(TComponent* Owner, Computer* RComputer, THomeForm* RHomeForm);

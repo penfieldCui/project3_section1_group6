@@ -26,13 +26,16 @@ __published:	// IDE-managed Components
 	TPanel *Panel4;
 	TPanel *Panel5;
 	TMenuItem *Edit1;
+	TMenuItem *urnonoff1;
 
 	void __fastcall UpdateTimerTimer(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall ComputerListViewDblClick(TObject *Sender);
 	void __fastcall MenuItemDeleteClick(TObject *Sender);
 	void __fastcall Panel5Click(TObject *Sender);
-	void __fastcall Edit1Click(TObject *Sender); // generate by OnCreate event
+	void __fastcall Edit1Click(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall urnonoff1Click(TObject *Sender); // generate by OnCreate event
 private:	// User declarations
 
 	std::vector<Computer> computers;

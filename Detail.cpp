@@ -17,10 +17,10 @@ __fastcall TDetailForm::TDetailForm(TComponent* Owner, Computer* RComputer, THom
 	FieldIP->Text = computer->GetIpAddress().c_str();
 
     char buffer[10];
-	snprintf(buffer, sizeof(buffer), "%6.1f%%", computer->GetCpuUsage());
+	snprintf(buffer, sizeof(buffer), "%5.1f%%", computer->GetCpuUsage());
 	FieldCPU->Text = buffer; // CPU (%)
 
-	snprintf(buffer, sizeof(buffer), "%6.1f%%", computer->GetRamUsage());
+	snprintf(buffer, sizeof(buffer), "%5.1f%%", computer->GetRamUsage());
 	FieldRAM->Text = buffer; // RAM (%)
 
 //	FieldCPU->Text = (std::to_string(computer->GetCpuUsage()) + "%").c_str();
@@ -58,30 +58,56 @@ __fastcall TDetailForm::TDetailForm(TComponent* Owner, Computer* RComputer, THom
 }
 
 
-
 void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
 {
 	//
 
-	if (this->computer != nullptr)
-	  for (int i = 0; i < computer->components.size(); ++i) {
-		// update each sec
-		computer->components[i].UpdateUsageComponent();
 
-//		// get the correspond item
-//        TListItem *item = ComputerListView->Items->Item[i];
-//
-//        double cpuUsagePercentage = computers[i].GetCpuUsage(); // CPU 使用率已经是百分比
-//        double ramUsagePercentage = computers[i].GetRamUsage();
-//
-//		char buffer[10];
-//		snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
-//		item->SubItems->Strings[1] = buffer; // CPU (%)
-//
-//		snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
-//		item->SubItems->Strings[2] = buffer; // RAM (%)
+	if (this->computer != nullptr){
+
+		FieldPower->Text = computer->IsPoweredOn() ? "On" : "Off";
+		FieldNetwork->Text = computer->IsConnected() ? "Connected" : "Disconnected";
+
+
+
+		// component list
+        char buffer[10];
+		for (int i = 0; i < computer->components.size(); ++i) {
+			// update each sec
+			computer->components[i].UpdateUsageComponent();
+
+			// get the correspond item
+			TListItem *item = ComponentListView->Items->Item[i];
+
+			// power of component
+			item->SubItems->Strings[0] = computer->components[i].IsPoweredOn() ? "On" : "Off";
+
+			double cpuUsagePercentage = computer->components[i].GetCpuUsage(); // CPU 使用率已经是百分比
+			double ramUsagePercentage = computer->components[i].GetRamUsage();
+
+
+			snprintf(buffer, sizeof(buffer), "%.1f", cpuUsagePercentage);
+			item->SubItems->Strings[1] = buffer; // CPU (%)
+
+			snprintf(buffer, sizeof(buffer), "%.1f", ramUsagePercentage);
+			item->SubItems->Strings[2] = buffer; // RAM (%)
 
 		}
+
+
+        computer->UpdateUsage();
+
+		snprintf(buffer, sizeof(buffer), "%5.1f%%", computer->GetCpuUsage());
+		FieldCPU->Text = buffer; // CPU (%)
+
+		snprintf(buffer, sizeof(buffer), "%5.1f%%", computer->GetRamUsage());
+		FieldRAM->Text = buffer; // RAM (%)
+
+//		FieldCPU->Text = (std::to_string(computer->GetCpuUsage()) + "%").c_str();
+//		FieldRAM->Text = (std::to_string(computer->GetRamUsage()) + "%").c_str();
+
+
+    }
 }
 //---------------------------------------------------------------------------
 
@@ -89,10 +115,11 @@ void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
 //{
 //	this->computer->SetName(std::string(AnsiString(FieldName->Text).c_str()));
 //
-//}
+//}
+
 //---------------------------------------------------------------------------
 
-void __fastcall TDetailForm::SaveClick(TObject *Sender)
+void __fastcall TDetailForm::ButtonSaveClick(TObject *Sender)
 {
 	this->computer->SetName(std::string(AnsiString(FieldName->Text).c_str()));
 }
@@ -143,7 +170,84 @@ void __fastcall TDetailForm::AddClick(TObject *Sender)
 
 	}
 
-    delete addComponentForm;
+	delete addComponentForm;
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TDetailForm::ComponentListViewDblClick(TObject *Sender)
+{
+	int index = ComponentListView->ItemIndex;
+	if (index != -1) {
+		Component *PComponent = &computer->components[index];
+		if(PComponent->IsPoweredOn())  PComponent->PowerOff();
+		else PComponent->PowerOn();
+
+		if (homeForm) homeForm->SaveAll();
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TDetailForm::urnonoff1Click(TObject *Sender)
+{
+	int index = ComponentListView->ItemIndex;
+	if (index != -1) {
+		Component *PComponent = &computer->components[index];
+		if(PComponent->IsPoweredOn())  PComponent->PowerOff();
+		else PComponent->PowerOn();
+
+		if (homeForm) homeForm->SaveAll();
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TDetailForm::Deletecomponent1Click(TObject *Sender)
+{
+	int selectedIndex = ComponentListView->ItemIndex;
+
+	if (selectedIndex != -1) {
+
+		int response = MessageDlg("Are you sure you want to delete this component?", mtConfirmation, TMsgDlgButtons() << mbYes << mbNo, 0);
+
+		if (response == mrYes) {
+			// delete from ListView
+			ComponentListView->Items->Delete(selectedIndex);
+			computer->components.erase(computer->components.begin() + selectedIndex);
+			 // Save updated list to file
+			if (homeForm) homeForm->SaveAll();
+
+		}
+	}
+	else {
+		ShowMessage("Please select an item to delete.");
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TDetailForm::ButtonPowerClick(TObject *Sender)
+{
+	if(computer->IsPoweredOn())
+		computer->PowerOff();
+	else
+		computer->PowerOn();
+
+	if (homeForm) homeForm->SaveAll();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TDetailForm::ButtonConnectClick(TObject *Sender)
+{
+	if(computer->IsConnected())
+		computer->Disconnect();
+	else
+		computer->Connect();
+
+	if (homeForm) homeForm->SaveAll();
+}
+//---------------------------------------------------------------------------
+
 
