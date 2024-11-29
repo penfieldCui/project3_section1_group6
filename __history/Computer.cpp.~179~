@@ -136,11 +136,11 @@ void Component::RandomlyFluctuateUsage() {
 }
 
 void Computer::UpdateUsage() {
-	if(PoweredOn*(){
+	if(!IsPoweredOn()){
 		ramUsage = 0;
-        cpuUsage = 0;
-	}
-	CalculateUsage();
+		cpuUsage = 0;
+	} else
+		CalculateUsage();
 
 }
 

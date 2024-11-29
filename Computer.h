@@ -24,7 +24,7 @@ public:
 
 	string GetType() const;
 
-	void UpdateUsageComponent();
+	void UpdateUsageComponent(bool computerPoweredOn);
 	void RandomlyFluctuateUsage();
 
 
