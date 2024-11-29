@@ -16,7 +16,11 @@ public:
 	bool IsPoweredOn() const;
 
 	double GetCpuUsage() const;
-    double GetRamUsage() const;
+	double GetRamUsage() const;
+
+//	void SetCpuUsage(double usage);
+//	void SetRamUsage(double usage);
+
 
 	string GetType() const;
 
@@ -33,18 +37,24 @@ private:
 	bool poweredOn;
 	double cpuUsage; // of single component
 	double ramUsage; //
+
+	double MaxCpuUsage;
+	double MaxRamUsage;
 };
 
 class Computer {
 public:
 
-	Computer(const string &ipAddress, const string &name, int totalRam = 16384);
+	Computer(const string &ipAddress, const string &name, int totalRam = 16384, bool poweredOn = false);
 
 	// Use Timer to update
 	void UpdateUsage();
 
 	// components
 	void AddComponent(const Component& component);
+
+	vector<Component> GetComponents();
+
 	string GetStatusReport() const;
 
 	// power
@@ -73,7 +83,7 @@ public:
 	double GetCpuUsage() const;
 	double GetRamUsage() const;
 
-    vector<Component> components; // List of components
+	vector<Component> components; // List of components
 
 
 	// New methods for saving/loading computer
@@ -90,7 +100,8 @@ private:
 	double cpuUsage;
 	double ramUsage;
 
-    bool poweredOn;         // Power state
+
+	bool poweredOn;         // Power state
     bool connected;         // Network connection state
 //    int brightness;         // Screen brightness (percentage)
 

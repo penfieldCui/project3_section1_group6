@@ -82,8 +82,27 @@ void Computer::LoadFromFile(ifstream &in) {
 
 vector<Component> Computer::GetComponents() { return components; };
 
-void Computer::PowerOn() { poweredOn = true; }
-void Computer::PowerOff() { poweredOn = false; }
+void Computer::PowerOn() {
+
+	poweredOn = true;
+
+	for (auto &comp : components)
+		comp.PowerOn();
+
+}
+
+
+void Computer::PowerOff() {
+
+	for (auto &comp : components)
+		comp.PowerOff();
+
+	poweredOn = false;
+
+}
+
+
+
 bool Computer::IsPoweredOn() const { return poweredOn; }
 void Computer::Connect() { connected = true; }
 void Computer::Disconnect() { connected = false; }
@@ -109,28 +128,30 @@ double Computer::GetRamUsage() const { return ramUsage; }
 
 
 void Component::RandomlyFluctuateUsage() {
-	double fluctuation = (rand() % 12 - 2); // Random value between -2 and 2
+	double fluctuation = (rand() % 12 - 2); // Random value between -2 and 9
 	fluctuation +=  0.1 * (rand() % 21 - 10);
 
 
-	if( cpuUsage <= MaxCpuUsage && cpuUsage >= 0)
-		cpuUsage += fluctuation;
+	if( cpuUsage <= MaxCpuUsage +10 && cpuUsage >= 0) cpuUsage += fluctuation;
 
-	if( ramUsage <= MaxRamUsage && ramUsage >= 0)
-		ramUsage += fluctuation;
+
+    fluctuation = (rand() % 12 - 2); // Random value between -2 and 9
+	fluctuation +=  0.1 * (rand() % 21 - 10);
+
+	if( ramUsage <= MaxRamUsage +10 && ramUsage >= 0) ramUsage += fluctuation;
 
 	// Ensure that CPU usage is between 0% and 100%
 	if (cpuUsage < 0) {
 		cpuUsage = 0;
 	} else if (cpuUsage > (MaxCpuUsage + 10)) {
-		cpuUsage = this->GetCpuUsage();
+		cpuUsage = MaxCpuUsage - 10;
 	}
 
 	// Ensure that RAM usage does not exceed total RAM or fall below 0
 	if (ramUsage < 0) {
 		ramUsage = 0;
 	} else if (ramUsage > (MaxRamUsage+10)) {
-		ramUsage = this->GetRamUsage();
+		ramUsage = MaxRamUsage - 10;
 	}
 
 }
@@ -145,9 +166,9 @@ void Computer::UpdateUsage() {
 }
 
 
-void Component::UpdateUsageComponent() {
+void Component::UpdateUsageComponent(bool computerPoweredOn) {
 
-	if(this->IsPoweredOn()){
+	if(this->IsPoweredOn() && computerPoweredOn){
         RandomlyFluctuateUsage();
 	}else{
 		ramUsage = 0;

@@ -74,7 +74,7 @@ void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
         char buffer[10];
 		for (int i = 0; i < computer->components.size(); ++i) {
 			// update each sec
-			computer->components[i].UpdateUsageComponent();
+			computer->components[i].UpdateUsageComponent(computer->IsPoweredOn());
 
 			// get the correspond item
 			TListItem *item = ComponentListView->Items->Item[i];
