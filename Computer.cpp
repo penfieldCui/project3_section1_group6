@@ -108,6 +108,9 @@ void Computer::Connect() { connected = true; }
 void Computer::Disconnect() { connected = false; }
 bool Computer::IsConnected() const { return connected; }
 void Computer::SetName(const string &newName) { name = newName; }
+
+void Computer::SetIp(const string &newIp) {  ipAddress = newIp; }
+
 string Computer::GetIpAddress() const { return ipAddress; }
 string Computer::GetName() const { return name; }
 int Computer::GetTotalRam() const { return totalRam; }

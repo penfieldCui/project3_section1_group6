@@ -68,15 +68,18 @@ void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
 		FieldPower->Text = computer->IsPoweredOn() ? "On" : "Off";
 		FieldNetwork->Text = computer->IsConnected() ? "Connected" : "Disconnected";
 
+
+
+		// component list
         char buffer[10];
 		for (int i = 0; i < computer->components.size(); ++i) {
 			// update each sec
-			computer->components[i].UpdateUsageComponent();
+			computer->components[i].UpdateUsageComponent(computer->IsPoweredOn());
 
 			// get the correspond item
 			TListItem *item = ComponentListView->Items->Item[i];
 
-			// power
+			// power of component
 			item->SubItems->Strings[0] = computer->components[i].IsPoweredOn() ? "On" : "Off";
 
 			double cpuUsagePercentage = computer->components[i].GetCpuUsage(); // CPU 使用率已经是百分比
@@ -92,6 +95,7 @@ void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
 		}
 
 
+        computer->UpdateUsage();
 
 		snprintf(buffer, sizeof(buffer), "%5.1f%%", computer->GetCpuUsage());
 		FieldCPU->Text = buffer; // CPU (%)
@@ -178,14 +182,27 @@ void __fastcall TDetailForm::ComponentListViewDblClick(TObject *Sender)
 		if(PComponent->IsPoweredOn())  PComponent->PowerOff();
 		else PComponent->PowerOn();
 
-        if (homeForm) homeForm->SaveAll();
+		if (homeForm) homeForm->SaveAll();
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TDetailForm::urnonoff1Click(TObject *Sender)
+{
+	int index = ComponentListView->ItemIndex;
+	if (index != -1) {
+		Component *PComponent = &computer->components[index];
+		if(PComponent->IsPoweredOn())  PComponent->PowerOff();
+		else PComponent->PowerOn();
+
+		if (homeForm) homeForm->SaveAll();
 	}
 }
 //---------------------------------------------------------------------------
 
+
 void __fastcall TDetailForm::Deletecomponent1Click(TObject *Sender)
 {
-    int selectedIndex = ComponentListView->ItemIndex;
+	int selectedIndex = ComponentListView->ItemIndex;
 
 	if (selectedIndex != -1) {
 
@@ -227,9 +244,16 @@ void __fastcall TDetailForm::ButtonConnectClick(TObject *Sender)
 	if(computer->IsConnected())
 		computer->Disconnect();
 	else
-		computer->PowerOn();
+		computer->Connect();
 
 	if (homeForm) homeForm->SaveAll();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TDetailForm::BackClick(TObject *Sender)
+{
+	ModalResult = mrCancel;
 }
 //---------------------------------------------------------------------------
 

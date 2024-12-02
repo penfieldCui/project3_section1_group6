@@ -18,9 +18,8 @@ object DetailForm: TDetailForm
     Height = 297
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = -1
+    ExplicitLeft = 8
     ExplicitTop = -5
-    ExplicitWidth = 329
     object Label1: TLabel
       Left = 42
       Top = 35
@@ -66,9 +65,9 @@ object DetailForm: TDetailForm
     object Label7: TLabel
       Left = 17
       Top = 176
-      Width = 214
+      Width = 209
       Height = 15
-      Caption = 'Press the button below to change status.'
+      Caption = 'Press the button below to switch status.'
     end
     object Label8: TLabel
       Left = 17
@@ -86,10 +85,9 @@ object DetailForm: TDetailForm
     end
     object FieldIP: TEdit
       Left = 86
-      Top = 65
+      Top = 61
       Width = 121
       Height = 23
-      Color = clBtnFace
       ReadOnly = True
       TabOrder = 1
     end
@@ -126,7 +124,6 @@ object DetailForm: TDetailForm
       Width = 83
       Height = 23
       Color = clBtnFace
-      ReadOnly = True
       TabOrder = 5
     end
     object ButtonSave: TButton
@@ -165,8 +162,6 @@ object DetailForm: TDetailForm
     Height = 28
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 437
-    ExplicitWidth = 325
     object Back: TButton
       Left = 213
       Top = 1
@@ -175,7 +170,7 @@ object DetailForm: TDetailForm
       Align = alRight
       Caption = 'Back to Home'
       TabOrder = 0
-      ExplicitLeft = 203
+      OnClick = BackClick
     end
     object Panel3: TPanel
       Left = 325
@@ -184,7 +179,6 @@ object DetailForm: TDetailForm
       Height = 26
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 315
     end
     object Panel4: TPanel
       Left = 1
@@ -212,8 +206,6 @@ object DetailForm: TDetailForm
     Height = 202
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 325
-    ExplicitHeight = 140
     object ComponentListView: TListView
       Left = 1
       Top = 1
@@ -242,8 +234,6 @@ object DetailForm: TDetailForm
       TabOrder = 0
       ViewStyle = vsReport
       OnDblClick = ComponentListViewDblClick
-      ExplicitWidth = 325
-      ExplicitHeight = 146
     end
   end
   object UpdateTimerDetail: TTimer
@@ -254,6 +244,10 @@ object DetailForm: TDetailForm
   object PopupMenu1: TPopupMenu
     Left = 280
     Top = 248
+    object urnonoff1: TMenuItem
+      Caption = 'Turn on/off'
+      OnClick = urnonoff1Click
+    end
     object Deletecomponent1: TMenuItem
       Caption = 'Delete component'
       OnClick = Deletecomponent1Click
