@@ -119,7 +119,7 @@ void __fastcall TDetailForm::UpdateTimerDetailTimer(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
-void __fastcall TDetailForm::ButtonSaveClick(TObject *Sender)
+void __fastcall TDetailForm::ButtonSaveNameClick(TObject *Sender)
 {
 	this->computer->SetName(std::string(AnsiString(FieldName->Text).c_str()));
 }
@@ -250,4 +250,16 @@ void __fastcall TDetailForm::ButtonConnectClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TDetailForm::BackClick(TObject *Sender)
+{
+	ModalResult = mrCancel;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TDetailForm::ButtonSaveIPClick(TObject *Sender)
+{
+	this->computer->SetIp(std::string(AnsiString(FieldIP->Text).c_str()));
+}
+//---------------------------------------------------------------------------
 

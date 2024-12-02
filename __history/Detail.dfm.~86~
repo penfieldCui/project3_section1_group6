@@ -2,8 +2,8 @@ object DetailForm: TDetailForm
   Left = 0
   Top = 0
   Caption = 'Detail'
-  ClientHeight = 512
-  ClientWidth = 329
+  ClientHeight = 527
+  ClientWidth = 335
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,13 +14,12 @@ object DetailForm: TDetailForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 329
+    Width = 335
     Height = 297
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = -1
+    ExplicitLeft = 8
     ExplicitTop = -5
-    ExplicitWidth = 327
     object Label1: TLabel
       Left = 42
       Top = 35
@@ -30,21 +29,21 @@ object DetailForm: TDetailForm
     end
     object Label2: TLabel
       Left = 64
-      Top = 64
+      Top = 68
       Width = 13
       Height = 15
       Caption = 'IP:'
     end
     object Label3: TLabel
-      Left = 20
-      Top = 103
+      Left = 40
+      Top = 109
       Width = 61
       Height = 15
       Caption = 'CPU Usage:'
     end
     object Label4: TLabel
-      Left = 17
-      Top = 135
+      Left = 37
+      Top = 138
       Width = 64
       Height = 15
       Caption = 'RAM Usage:'
@@ -66,9 +65,9 @@ object DetailForm: TDetailForm
     object Label7: TLabel
       Left = 17
       Top = 176
-      Width = 214
+      Width = 209
       Height = 15
-      Caption = 'Press the button below to change status.'
+      Caption = 'Press the button below to switch status.'
     end
     object Label8: TLabel
       Left = 17
@@ -89,13 +88,12 @@ object DetailForm: TDetailForm
       Top = 61
       Width = 121
       Height = 23
-      Color = clBtnFace
       ReadOnly = True
       TabOrder = 1
     end
     object FieldCPU: TEdit
       Left = 107
-      Top = 100
+      Top = 106
       Width = 75
       Height = 23
       Color = clBtnFace
@@ -104,7 +102,7 @@ object DetailForm: TDetailForm
     end
     object FieldRAM: TEdit
       Left = 107
-      Top = 132
+      Top = 135
       Width = 75
       Height = 23
       Color = clBtnFace
@@ -126,18 +124,17 @@ object DetailForm: TDetailForm
       Width = 83
       Height = 23
       Color = clBtnFace
-      ReadOnly = True
       TabOrder = 5
     end
-    object ButtonSave: TButton
+    object ButtonSaveName: TButton
       Left = 224
       Top = 31
       Width = 79
-      Height = 26
+      Height = 24
       Align = alCustom
       Caption = 'Save name'
       TabOrder = 6
-      OnClick = ButtonSaveClick
+      OnClick = ButtonSaveNameClick
     end
     object ButtonPower: TButton
       Left = 20
@@ -160,31 +157,28 @@ object DetailForm: TDetailForm
   end
   object Panel2: TPanel
     Left = 0
-    Top = 484
-    Width = 329
+    Top = 499
+    Width = 335
     Height = 28
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 437
-    ExplicitWidth = 325
     object Back: TButton
-      Left = 207
+      Left = 213
       Top = 1
       Width = 112
       Height = 26
       Align = alRight
       Caption = 'Back to Home'
       TabOrder = 0
-      ExplicitLeft = 203
+      OnClick = BackClick
     end
     object Panel3: TPanel
-      Left = 319
+      Left = 325
       Top = 1
       Width = 9
       Height = 26
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 315
     end
     object Panel4: TPanel
       Left = 1
@@ -208,17 +202,15 @@ object DetailForm: TDetailForm
   object PanelComponentList: TPanel
     Left = 0
     Top = 297
-    Width = 329
-    Height = 187
+    Width = 335
+    Height = 202
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 325
-    ExplicitHeight = 140
     object ComponentListView: TListView
       Left = 1
       Top = 1
-      Width = 327
-      Height = 185
+      Width = 333
+      Height = 200
       Align = alClient
       Columns = <
         item
@@ -242,8 +234,6 @@ object DetailForm: TDetailForm
       TabOrder = 0
       ViewStyle = vsReport
       OnDblClick = ComponentListViewDblClick
-      ExplicitWidth = 325
-      ExplicitHeight = 146
     end
   end
   object UpdateTimerDetail: TTimer
@@ -254,6 +244,10 @@ object DetailForm: TDetailForm
   object PopupMenu1: TPopupMenu
     Left = 280
     Top = 248
+    object urnonoff1: TMenuItem
+      Caption = 'Turn on/off'
+      OnClick = urnonoff1Click
+    end
     object Deletecomponent1: TMenuItem
       Caption = 'Delete component'
       OnClick = Deletecomponent1Click

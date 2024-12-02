@@ -73,9 +73,10 @@ public:
 
 
 	void SetName(const string &newName);
+	void SetIp(const string &newIp);
 
-    // Accessor methods
-    string GetIpAddress() const;
+	// Accessor methods
+	string GetIpAddress() const;
     string GetName() const;
 	int GetTotalRam() const;
 

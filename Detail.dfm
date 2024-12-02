@@ -18,9 +18,6 @@ object DetailForm: TDetailForm
     Height = 297
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = -1
-    ExplicitTop = -5
-    ExplicitWidth = 329
     object Label1: TLabel
       Left = 42
       Top = 35
@@ -86,11 +83,9 @@ object DetailForm: TDetailForm
     end
     object FieldIP: TEdit
       Left = 86
-      Top = 65
+      Top = 61
       Width = 121
       Height = 23
-      Color = clBtnFace
-      ReadOnly = True
       TabOrder = 1
     end
     object FieldCPU: TEdit
@@ -129,15 +124,15 @@ object DetailForm: TDetailForm
       ReadOnly = True
       TabOrder = 5
     end
-    object ButtonSave: TButton
+    object ButtonSaveName: TButton
       Left = 224
       Top = 31
       Width = 79
-      Height = 26
+      Height = 24
       Align = alCustom
       Caption = 'Save name'
       TabOrder = 6
-      OnClick = ButtonSaveClick
+      OnClick = ButtonSaveNameClick
     end
     object ButtonPower: TButton
       Left = 20
@@ -157,6 +152,15 @@ object DetailForm: TDetailForm
       TabOrder = 8
       OnClick = ButtonConnectClick
     end
+    object ButtonSaveIP: TButton
+      Left = 224
+      Top = 61
+      Width = 79
+      Height = 24
+      Caption = 'Save IP'
+      TabOrder = 9
+      OnClick = ButtonSaveIPClick
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -165,8 +169,6 @@ object DetailForm: TDetailForm
     Height = 28
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 437
-    ExplicitWidth = 325
     object Back: TButton
       Left = 213
       Top = 1
@@ -175,7 +177,7 @@ object DetailForm: TDetailForm
       Align = alRight
       Caption = 'Back to Home'
       TabOrder = 0
-      ExplicitLeft = 203
+      OnClick = BackClick
     end
     object Panel3: TPanel
       Left = 325
@@ -184,7 +186,6 @@ object DetailForm: TDetailForm
       Height = 26
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 315
     end
     object Panel4: TPanel
       Left = 1
@@ -212,8 +213,6 @@ object DetailForm: TDetailForm
     Height = 202
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 325
-    ExplicitHeight = 140
     object ComponentListView: TListView
       Left = 1
       Top = 1
@@ -242,8 +241,6 @@ object DetailForm: TDetailForm
       TabOrder = 0
       ViewStyle = vsReport
       OnDblClick = ComponentListViewDblClick
-      ExplicitWidth = 325
-      ExplicitHeight = 146
     end
   end
   object UpdateTimerDetail: TTimer

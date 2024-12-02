@@ -40,7 +40,7 @@ __published:    // IDE-managed Components
 	TEdit *FieldNetwork;
 	TTimer *UpdateTimerDetail;
 	TButton *Back;
-	TButton *ButtonSave;
+	TButton *ButtonSaveName;
 	TPanel *Panel3;
 	TPanel *Panel4;
 	TButton *Add;
@@ -54,14 +54,17 @@ __published:    // IDE-managed Components
 	TLabel *Label7;
 	TLabel *Label8;
 	TMenuItem *urnonoff1;
+	TButton *ButtonSaveIP;
 	void __fastcall UpdateTimerDetailTimer(TObject *Sender);
-	void __fastcall ButtonSaveClick(TObject *Sender);
+	void __fastcall ButtonSaveNameClick(TObject *Sender);
 	void __fastcall AddClick(TObject *Sender);
 	void __fastcall ComponentListViewDblClick(TObject *Sender);
 	void __fastcall Deletecomponent1Click(TObject *Sender);
 	void __fastcall ButtonPowerClick(TObject *Sender);
 	void __fastcall ButtonConnectClick(TObject *Sender);
 	void __fastcall urnonoff1Click(TObject *Sender);
+	void __fastcall BackClick(TObject *Sender);
+	void __fastcall ButtonSaveIPClick(TObject *Sender);
 
 private:    // User declarations
 
